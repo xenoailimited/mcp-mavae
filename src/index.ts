@@ -5,14 +5,14 @@ import {
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 import {
-  AIGC_RAW_TOOL,
-  AIGC_COLLECTION_TOOL,
-  AIGC_RETRY_TOOL,
-  AIGC_IMAGES_TOOL,
-  AIGC_IMAGE_TOOL,
-  AIGC_TASK_STATE_TOOL,
-  AIGC_LORAS_TOOL,
-  AIGC_MODELS_TOOL,
+  IMAGE_RAW_GENERATE_TOOL,
+  IMAGE_COLLECTION_GENERATE_TOOL,
+  IMAGE_RETRY_GENERATE_TOOL,
+  IMAGE_STATE_TOOL,
+  LIST_IMAGES_TOOL,
+  GENERATE_TASK_STATE_TOOL,
+  LIST_LORAS_TOOL,
+  LIST_MODELS_TOOL,
   COLLECTION_CREATE_TOOL,
   COLLECTION_DELETE_TOOL,
   COLLECTION_TOGGLE_PUBLIC_TOOL,
@@ -23,14 +23,14 @@ import {
   EDIT_CROP_IMAGE_TOOL,
 } from "./tools/index.js";
 import {
-  handleAigcRawGenerate,
-  handleAigcCollectionGenerate,
-  handleAigcRetryGenerate,
-  handleAigcImageState,
-  handleAigcListImages,
-  handleAigcTaskState,
-  handleAigcLoras,
-  handleAigcModels,
+  handleImageRawGenerate,
+  handleImageCollectionGenerate,
+  handleImageRetryGenerate,
+  handleImageState,
+  handleListImages,
+  handleGenerateTaskState,
+  handleListLoras,
+  handleListModels,
   handleCollectionCreate,
   handleCollectionDelete,
   handleCollectionTogglePublic,
@@ -64,14 +64,14 @@ if (!MAVAE_API_KEY) {
 server.setRequestHandler(ListToolsRequestSchema, async () => {
   return {
     tools: [
-      AIGC_RAW_TOOL,
-      AIGC_COLLECTION_TOOL,
-      AIGC_RETRY_TOOL,
-      AIGC_IMAGES_TOOL,
-      AIGC_IMAGE_TOOL,
-      AIGC_TASK_STATE_TOOL,
-      AIGC_LORAS_TOOL,
-      AIGC_MODELS_TOOL,
+      IMAGE_RAW_GENERATE_TOOL,
+      IMAGE_COLLECTION_GENERATE_TOOL,
+      IMAGE_RETRY_GENERATE_TOOL,
+      IMAGE_STATE_TOOL,
+      LIST_IMAGES_TOOL,
+      GENERATE_TASK_STATE_TOOL,
+      LIST_LORAS_TOOL,
+      LIST_MODELS_TOOL,
       COLLECTION_CREATE_TOOL,
       COLLECTION_DELETE_TOOL,
       COLLECTION_TOGGLE_PUBLIC_TOOL,
@@ -93,35 +93,35 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     }
 
     switch (name) {
-      case AIGC_RAW_TOOL.name: {
+      case IMAGE_RAW_GENERATE_TOOL.name: {
         const formatArgs = Schema.RawGenerateSchema.parse(args);
-        return await handleAigcRawGenerate(formatArgs);
+        return await handleImageRawGenerate(formatArgs);
       }
-      case AIGC_COLLECTION_TOOL.name: {
+      case IMAGE_COLLECTION_GENERATE_TOOL.name: {
         const formatArgs = Schema.CollectionGenerateSchema.parse(args);
-        return await handleAigcCollectionGenerate(formatArgs);
+        return await handleImageCollectionGenerate(formatArgs);
       }
-      case AIGC_RETRY_TOOL.name: {
+      case IMAGE_RETRY_GENERATE_TOOL.name: {
         const formatArgs = Schema.RetryGenerateSchema.parse(args);
-        return await handleAigcRetryGenerate(formatArgs);
+        return await handleImageRetryGenerate(formatArgs);
       }
-      case AIGC_IMAGES_TOOL.name: {
+      case LIST_IMAGES_TOOL.name: {
         const formatArgs = Schema.ListImagesSchema.parse(args);
-        return await handleAigcListImages(formatArgs);
+        return await handleListImages(formatArgs);
       }
-      case AIGC_IMAGE_TOOL.name: {
+      case IMAGE_STATE_TOOL.name: {
         const formatArgs = Schema.ImageStateSchema.parse(args);
-        return await handleAigcImageState(formatArgs);
+        return await handleImageState(formatArgs);
       }
-      case AIGC_TASK_STATE_TOOL.name: {
+      case GENERATE_TASK_STATE_TOOL.name: {
         const formatArgs = Schema.TaskStateSchema.parse(args);
-        return await handleAigcTaskState(formatArgs);
+        return await handleGenerateTaskState(formatArgs);
       }
-      case AIGC_LORAS_TOOL.name: {
-        return await handleAigcLoras();
+      case LIST_LORAS_TOOL.name: {
+        return await handleListLoras();
       }
-      case AIGC_MODELS_TOOL.name: {
-        return await handleAigcModels();
+      case LIST_MODELS_TOOL.name: {
+        return await handleListModels();
       }
       case COLLECTION_CREATE_TOOL.name: {
         const formatArgs = Schema.CreateCollectionSchema.parse(args);

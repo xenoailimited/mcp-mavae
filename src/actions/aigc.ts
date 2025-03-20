@@ -10,7 +10,7 @@ import {
 import { MAVAE_SERVER_API, MAVAE_API_KEY } from "../utils/constants.js";
 import * as ServerResponseType from "../types/response.js";
 
-export const handleAigcRawGenerate = async (
+export const handleImageRawGenerate = async (
   args: z.infer<typeof RawGenerateSchema>
 ) => {
   const url = new URL(`${MAVAE_SERVER_API}/aigc/raw`);
@@ -39,7 +39,7 @@ export const handleAigcRawGenerate = async (
   };
 };
 
-export const handleAigcCollectionGenerate = async (
+export const handleImageCollectionGenerate = async (
   args: z.infer<typeof CollectionGenerateSchema>
 ) => {
   const url = new URL(`${MAVAE_SERVER_API}/aigc/collection`);
@@ -67,7 +67,7 @@ export const handleAigcCollectionGenerate = async (
   };
 };
 
-export const handleAigcRetryGenerate = async (
+export const handleImageRetryGenerate = async (
   args: z.infer<typeof RetryGenerateSchema>
 ) => {
   const url = new URL(`${MAVAE_SERVER_API}/aigc/retry`);
@@ -95,7 +95,7 @@ export const handleAigcRetryGenerate = async (
   };
 };
 
-export const handleAigcListImages = async (
+export const handleListImages = async (
   args: z.infer<typeof ListImagesSchema>
 ) => {
   const url = new URL(`${MAVAE_SERVER_API}/aigc/list`);
@@ -124,7 +124,7 @@ export const handleAigcListImages = async (
   };
 };
 
-export const handleAigcImageState = async (
+export const handleImageState = async (
   args: z.infer<typeof ImageStateSchema>
 ) => {
   const url = new URL(`${MAVAE_SERVER_API}/aigc/state`);
@@ -152,7 +152,7 @@ export const handleAigcImageState = async (
   };
 };
 
-export const handleAigcTaskState = async (
+export const handleGenerateTaskState = async (
   args: z.infer<typeof TaskStateSchema>
 ) => {
   const url = new URL(`${MAVAE_SERVER_API}/aigc/task_state`);
@@ -179,7 +179,7 @@ export const handleAigcTaskState = async (
   };
 };
 
-export const handleAigcLoras = async () => {
+export const handleListLoras = async () => {
   const url = new URL(`${MAVAE_SERVER_API}/aigc/loras`);
   const response = await fetch(url, {
     headers: {
@@ -200,7 +200,7 @@ export const handleAigcLoras = async () => {
   };
 };
 
-export const handleAigcModels = async () => {
+export const handleListModels = async () => {
   const url = new URL(`${MAVAE_SERVER_API}/aigc/models`);
   const response = await fetch(url, {
     headers: {
