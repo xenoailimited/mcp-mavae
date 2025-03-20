@@ -114,9 +114,15 @@ export const RetryGenerateSchema = z.object({
 export const CollectionGenerateSchema = z.object({
   collection_id: z
     .number()
+    .optional()
     .describe("The collection id used to generate the image."),
+  collection_name: z
+    .string()
+    .optional()
+    .describe("The collection name used to generate the image."),
   params: z
     .record(z.string())
+    .optional()
     .describe(
       "Some parameters are used to replace the corresponding placeholders in the cue words."
     ),

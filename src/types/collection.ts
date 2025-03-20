@@ -27,14 +27,29 @@ export const CreateCollectionSchema = z.object({
 });
 
 export const DeleteCollectionSchema = z.object({
-  collection_id: z.number().describe("The collection id to delete."),
+  collection_id: z.number().optional().describe("The collection id to delete."),
+  collection_name: z
+    .string()
+    .optional()
+    .describe("The collection name to delete."),
 });
 
 export const ToggleCollectionPublicSchema = z.object({
-  collection_id: z.number().describe("The collection id to toggle public."),
+  collection_id: z
+    .number()
+    .optional()
+    .describe("The collection id to toggle public."),
+  collection_name: z
+    .string()
+    .optional()
+    .describe("The collection name to toggle public."),
 });
 
 export const ListCollectionsSchema = z.object({
+  collection_name: z
+    .string()
+    .optional()
+    .describe("The collection name to filter."),
   page: z.number().optional().describe("The page."),
   page_size: z.number().optional().describe("The page size."),
 });
