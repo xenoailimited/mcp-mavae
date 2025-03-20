@@ -3,7 +3,7 @@ import { z } from "zod";
 export const CompressImageSchema = z.object({
   inputs: z
     .array(z.string())
-    .describe("The URLs or paths of the images to compress."),
+    .describe("The URLs or full paths to the images to compress."),
   quality: z
     .number()
     .optional()
@@ -12,13 +12,13 @@ export const CompressImageSchema = z.object({
   outputPath: z
     .string()
     .optional()
-    .describe("The path to save the compressed image."),
+    .describe("The full path to save the compressed image."),
 });
 
 export const CropImageSchema = z.object({
   inputs: z
     .array(z.string())
-    .describe("The URLs or paths of the images to crop."),
+    .describe("The URLs or full paths to the images to crop."),
   width: z
     .number()
     .describe("The width of the cropped image.")
@@ -42,5 +42,5 @@ export const CropImageSchema = z.object({
   outputPath: z
     .string()
     .optional()
-    .describe("The path to save the cropped image."),
+    .describe("The full path to save the cropped image."),
 });
