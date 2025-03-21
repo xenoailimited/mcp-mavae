@@ -153,10 +153,10 @@ export const handleEditCropImage = async (
         );
         await image
           .extract({
-            width: args.width,
-            height: args.height,
-            left: args.left,
-            top: args.top,
+            width: args.width || 512,
+            height: args.height || 512,
+            left: args.left || 0,
+            top: args.top || 0,
           })
           .toFile(outputPath);
         return `Cropped image saved to ${outputPath}`;
