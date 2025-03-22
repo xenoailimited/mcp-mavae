@@ -20,3 +20,12 @@ export const EDIT_CROP_IMAGE_TOOL: Tool = {
     EDIT_SCHEMA.CropImageSchema
   ) as BaseToolInputSchema,
 };
+
+export const EDIT_RESIZE_IMAGE_TOOL: Tool = {
+  name: "resize_image",
+  description:
+    "Resize images with proportional or fixed dimensions, supports local paths and URLs.",
+  inputSchema: zodToJsonSchema(
+    EDIT_SCHEMA.ResizeImageSchema
+  ) as BaseToolInputSchema,
+};

@@ -12,7 +12,7 @@ MAVAE is a Model Context Protocol (MCP) server for interacting with image media 
 ## 🚀 Features
 
 - **Image Generation**: Generate images using both raw configurations and predefined collections
-- **Image Editing**: Compress and crop images
+- **Image Editing**: Compress, crop, and resize images with proportional or fixed dimensions
 - **Collection Management**: Create, manage, and share configurations for consistent image generation
 - **Model & Lora Management**: List and utilize available models and Loras
 - **API Token Management**: Handle authentication for secure interaction with Mavae services
@@ -109,6 +109,7 @@ mavae/
 ### Image Editing
 - `compress_image` - Lossless compression of images
 - `crop_image` - Crop images with local path and URL support
+- `resize_image` - Resize images with proportional or fixed dimensions
 
 ### Model & Resources
 - `list_images` - Get the list of owned images

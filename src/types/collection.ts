@@ -7,12 +7,18 @@ export const CreateCollectionSchema = z.object({
     .string()
     .optional()
     .describe("The description of the collection."),
-  prompt: z.string().describe("The prompt of the collection."),
+  prompt: z
+    .string()
+    .describe(
+      "The base prompt string that supports variable placeholders using $variable syntax, e.g., 'portrait, 1 $gender, $clothing $style'. Variables will be dynamically replaced at image generation time."
+    ),
   negative_prompt: z.string().optional().describe("The negative prompt."),
   variables: z
     .array(z.string())
     .optional()
-    .describe("Variables that can be replaced in prompt."),
+    .describe(
+      "A list of variable names (without $) that are used in the prompt string, e.g., ['gender', 'clothing', 'style']. These will be replaced by values at generation time."
+    ),
   train_server: z
     .string()
     .default("sd")
