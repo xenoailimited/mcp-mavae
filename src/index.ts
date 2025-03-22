@@ -21,6 +21,7 @@ import {
   TOKEN_STATE_TOOL,
   EDIT_COMPRESS_IMAGE_TOOL,
   EDIT_CROP_IMAGE_TOOL,
+  EDIT_RESIZE_IMAGE_TOOL,
 } from "./tools/index.js";
 import {
   handleImageRawGenerate,
@@ -39,6 +40,7 @@ import {
   handleTokenState,
   handleEditCompressImage,
   handleEditCropImage,
+  handleEditResizeImage,
 } from "./actions/index.js";
 import * as Schema from "./types/index.js";
 
@@ -80,6 +82,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       TOKEN_STATE_TOOL,
       EDIT_COMPRESS_IMAGE_TOOL,
       EDIT_CROP_IMAGE_TOOL,
+      EDIT_RESIZE_IMAGE_TOOL,
     ],
   };
 });
@@ -153,6 +156,10 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       case EDIT_CROP_IMAGE_TOOL.name: {
         const formatArgs = Schema.CropImageSchema.parse(args);
         return await handleEditCropImage(formatArgs);
+      }
+      case EDIT_RESIZE_IMAGE_TOOL.name: {
+        const formatArgs = Schema.ResizeImageSchema.parse(args);
+        return await handleEditResizeImage(formatArgs);
       }
       default:
         return {

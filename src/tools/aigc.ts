@@ -5,7 +5,7 @@ import { BaseToolInputSchema } from "../types/common.js";
 
 export const IMAGE_RAW_GENERATE_TOOL = {
   name: "image_raw_generate",
-  description: "Generate an image using raw AIGC configuration.",
+  description: "Generate an image using raw AIGC configuration. Usually, check the generation status 10 seconds after starting the image generation to allow sufficient time for the process.",
   inputSchema: zodToJsonSchema(
     AIGC_SCHEMA.RawGenerateSchema
   ) as BaseToolInputSchema,
@@ -13,7 +13,7 @@ export const IMAGE_RAW_GENERATE_TOOL = {
 
 export const IMAGE_COLLECTION_GENERATE_TOOL = {
   name: "image_collection_generate",
-  description: "Generate an image using a collection's AIGC configuration.",
+  description: "Generate an image using a collection's AIGC configuration. You need to first check the collection details to understand its variables so you can call it correctly. Usually, check the generation status 10 seconds after starting the image generation to allow sufficient time for the process.",
   inputSchema: zodToJsonSchema(
     AIGC_SCHEMA.CollectionGenerateSchema
   ) as BaseToolInputSchema,
@@ -21,7 +21,7 @@ export const IMAGE_COLLECTION_GENERATE_TOOL = {
 
 export const IMAGE_RETRY_GENERATE_TOOL = {
   name: "image_retry_generate",
-  description: "Retry a failed image generation.",
+  description: "Retry a failed image generation. Usually, check the generation status 10 seconds after starting the image generation to allow sufficient time for the process.",
   inputSchema: zodToJsonSchema(
     AIGC_SCHEMA.RetryGenerateSchema
   ) as BaseToolInputSchema,
@@ -45,7 +45,7 @@ export const IMAGE_STATE_TOOL = {
 
 export const GENERATE_TASK_STATE_TOOL = {
   name: "generate_task_state",
-  description: "Get the generation state of an image by task id.",
+  description: "Get the generation state of an image by task id. Usually, check the generation status 10 seconds after starting the image generation to allow sufficient time for the process.",
   inputSchema: zodToJsonSchema(
     AIGC_SCHEMA.TaskStateSchema
   ) as BaseToolInputSchema,

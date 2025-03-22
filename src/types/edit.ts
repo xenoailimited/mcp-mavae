@@ -44,3 +44,33 @@ export const CropImageSchema = z.object({
     .optional()
     .describe("The full path to save the cropped image."),
 });
+
+export const ResizeImageSchema = z.object({
+  inputs: z
+    .array(z.string())
+    .describe("The URLs or full paths to the images to resize."),
+  width: z
+    .number()
+    .optional()
+    .describe("The target width of the resized image in pixels."),
+  height: z
+    .number()
+    .optional()
+    .describe("The target height of the resized image in pixels."),
+  outputPath: z
+    .string()
+    .optional()
+    .describe("The full path to save the resized image."),
+  fit: z
+    .enum(["cover", "contain", "fill", "inside", "outside"])
+    .optional()
+    .default("contain")
+    .describe("How the image should be resized to fit the target dimensions."),
+})
+.refine(
+  (data) => data.width !== undefined || data.height !== undefined,
+  {
+    message: "At least one of width or height must be provided",
+    path: ["width", "height"],
+  }
+);
