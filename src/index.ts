@@ -21,6 +21,8 @@ import {
   TOKEN_STATE_TOOL,
   EDIT_COMPRESS_IMAGE_TOOL,
   EDIT_CROP_IMAGE_TOOL,
+  WEB3_IMAGE_TOKENIZATION_TOOL,
+  WEB3_JOB_STATE_TOOL,
   EDIT_RESIZE_IMAGE_TOOL,
 } from "./tools/index.js";
 import {
@@ -40,6 +42,8 @@ import {
   handleTokenState,
   handleEditCompressImage,
   handleEditCropImage,
+  handleImageTokenization,
+  handleWeb3JobState,
   handleEditResizeImage,
 } from "./actions/index.js";
 import * as Schema from "./types/index.js";
@@ -82,6 +86,8 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
       TOKEN_STATE_TOOL,
       EDIT_COMPRESS_IMAGE_TOOL,
       EDIT_CROP_IMAGE_TOOL,
+      WEB3_IMAGE_TOKENIZATION_TOOL,
+      WEB3_JOB_STATE_TOOL,
       EDIT_RESIZE_IMAGE_TOOL,
     ],
   };
@@ -156,6 +162,14 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       case EDIT_CROP_IMAGE_TOOL.name: {
         const formatArgs = Schema.CropImageSchema.parse(args);
         return await handleEditCropImage(formatArgs);
+      }
+      case WEB3_IMAGE_TOKENIZATION_TOOL.name: {
+        const formatArgs = Schema.ImageTokenizationSchema.parse(args);
+        return await handleImageTokenization(formatArgs);
+      }
+      case WEB3_JOB_STATE_TOOL.name: {
+        const formatArgs = Schema.JobStateSchema.parse(args);
+        return await handleWeb3JobState(formatArgs);
       }
       case EDIT_RESIZE_IMAGE_TOOL.name: {
         const formatArgs = Schema.ResizeImageSchema.parse(args);

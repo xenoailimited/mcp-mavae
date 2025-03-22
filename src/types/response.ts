@@ -32,17 +32,26 @@ export type AigcConfig = {
   }[];
 };
 
+export type ImageTokenizationResult = {
+  network?: number; // default is Base Network: https://basescan.org/
+  recipient?: string;
+  tx_hash?: string;
+  job_id?: string;
+};
+
 export type Image = {
   prompt?: string;
   id?: number;
   owner?: string;
   url?: string;
   task_id?: string;
-  state?: number;
+  state?: number; // 0 is generating, 1 is completed, -1 is failed
   negative_prompt?: string;
   collection?: number;
   created_at?: Date;
   aigc_config?: AigcConfig;
+  tokenization_state?: number; // 0 is not tokenization, 1 is queued, 2 is completed, -1 is failed
+  tokenization_result?: ImageTokenizationResult;
 };
 
 export type Collection = {
@@ -149,4 +158,19 @@ export type Token = {
 export type TokenResponse = {
   message: string;
   data: Token | null;
+};
+
+export type ImageTokenizationResponse = {
+  message: string;
+  data: {
+    job_id?: string;
+  };
+};
+
+export type Web3JobStateResponse = {
+  message: string;
+  data: {
+    state?: string;
+    value?: string;
+  };
 };
